@@ -57,7 +57,7 @@ export class AppComponent {
 
     this.data.currentMessage.subscribe(message => this.ifVisible = message);
     this.nameSurnameService.currentMessage.subscribe(message => this.nameSurname = message);
-  
+
   }
   logOut() {
     this.data.changeMessage(true);
@@ -69,17 +69,6 @@ export class AppComponent {
 
   account() {
     this.router.navigate(['/profile/my-info']);
-  }
-
-  openDialog() {
-    const dialogRef = this.dialog.open(DialogContentExampleDialogComponent, {
-
-    });
-
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
   }
 
 }

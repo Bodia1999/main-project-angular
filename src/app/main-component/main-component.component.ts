@@ -118,14 +118,17 @@ export class MainComponentComponent implements OnInit {
         'Authorization': sessionStorage.getItem('token')
       }
     }
-    ).subscribe(data => { this.creditCards.push(data); alert('Your card was saved!'); }, error => console.log(error));
+    ).subscribe(data => {
+      this.creditCards.push(data);
+      this.addingCreditCard = false; alert('Your card was saved!');
+    }, error => console.log(error));
 
   }
 
   deleteCreditCard(idIn) {
     console.log(this.creditCards);
     //this.creditCards = this.creditCards.filter(t => t !==  );
-    /*this.http.delete(this.urlToDeleteCard + '/' + idIn, {
+    this.http.delete(this.urlToDeleteCard + '/' + idIn, {
       headers: {
         'Authorization': sessionStorage.getItem('token')
       }
@@ -135,15 +138,44 @@ export class MainComponentComponent implements OnInit {
         if (this.creditCards[i].id === idIn) {
           this.creditCards.splice(i, 1);
         }
-      } }, error => console.log(error));*/
+      }
+    }, error => console.log(error));
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(DialogContentExampleDialogComponent);
+  openDialog(idIn): any {
+    const dialogRef = this.dialog.open(DialogContentExampleDialogComponent, {
 
+      data: 'delete'
+
+    });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if (result === undefined) {
+        return;
+      }
+      console.log(`Dialog result: ${result.data}`);
+      if (result.data) {
+        this.deleteCreditCard(idIn);
+      }
+    });
+  }
+
+  openWindow() {
+
+    const dialogRef = this.dialog.open(DialogContentExampleDialogComponent, {
+
+      data: 'update information'
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === undefined) {
+        return;
+      }
+      console.log(`Dialog result: ${result.data}`);
+      if (result.data) {
+        this.updateUser();
+      }
     });
   }
 }
