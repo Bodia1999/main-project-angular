@@ -6,6 +6,7 @@ import { NameService } from '../service/name.service';
 import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { DialogContentExampleDialogComponent } from '../dialogComponent/dialog-content-example-dialog/dialog-content-example-dialog.component';
+import { SigningComponent } from '../signing/signing.component';
 
 @Component({
   selector: 'app-main-component',
@@ -24,10 +25,14 @@ export class MainComponentComponent implements OnInit {
   creditCards = [];
   addingCreditCard = false;
   id: number;
+  oldPassword = '';
+  newPassword = '';
+  changePasswordButton = false;
   urlGetUser = 'http://localhost:8000/api/users/me';
   urlUpdateUser = 'http://localhost:8000/api/users/update';
   urlSaveCardToUser = 'http://localhost:8000/creditCard/save';
   urlToDeleteCard = 'http://localhost:8000/creditCard/delete';
+  urlToChangePassword = 'http://localhost:8000/api/users/changePassword';
 
   constructor(
     private router: Router,
@@ -35,7 +40,7 @@ export class MainComponentComponent implements OnInit {
     private cookies: CookieService,
     private nameService: NameService,
     private formBuilder: FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -139,13 +144,21 @@ export class MainComponentComponent implements OnInit {
           this.creditCards.splice(i, 1);
         }
       }
-    }, error => console.log(error));
+    }, error => {
+      if (error.status === 403) {
+        alert('You do not have enough rights to delete!');
+      }
+    });
   }
 
   openDialog(idIn): any {
     const dialogRef = this.dialog.open(DialogContentExampleDialogComponent, {
 
-      data: 'delete'
+      data: {
+        container: 'delete',
+        button: 'Delete',
+        mainMessage: 'Do you really want to'
+      }
 
     });
 
@@ -164,7 +177,11 @@ export class MainComponentComponent implements OnInit {
 
     const dialogRef = this.dialog.open(DialogContentExampleDialogComponent, {
 
-      data: 'update information'
+      data: {
+        container: 'update information',
+        button: 'Update',
+        mainMessage: 'Would you like to'
+      }
 
     });
 
@@ -175,6 +192,57 @@ export class MainComponentComponent implements OnInit {
       console.log(`Dialog result: ${result.data}`);
       if (result.data) {
         this.updateUser();
+      }
+    });
+  }
+
+  openCloseFormToChangePassword() {
+    this.changePasswordButton = !this.changePasswordButton;
+  }
+
+  changePassword() {
+    const newObject = {
+      email: this.email,
+      password: this.oldPassword,
+      newPassword: this.newPassword
+    };
+    this.http.put(this.urlToChangePassword, newObject, {
+      headers: {
+        'Authorization': sessionStorage.getItem('token')
+      }
+    }).subscribe(data => {
+      this.changePasswordButton = false;
+      this.convertData(data.tokenType, data.accessToken);
+      this.oldPassword = ''; this.newPassword = '';
+    }, error => { alert(error.error.message); this.oldPassword = ''; this.newPassword = ''; });
+
+  }
+
+  convertData(tokenType: string, accessToken: string) {
+    const token = tokenType + ' ' + accessToken;
+    sessionStorage.setItem('token', token);
+    //this.cookies.set('token', this.token);
+    //return this.token;
+  }
+
+  openDialogToChangePassword() {
+    const dialogRef = this.dialog.open(DialogContentExampleDialogComponent, {
+
+      data: {
+        container: 'change password',
+        button: 'Change',
+        mainMessage: 'Would you like to'
+      }
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === undefined) {
+        return;
+      }
+      console.log(`Dialog result: ${result.data}`);
+      if (result.data) {
+        this.changePassword();
       }
     });
   }

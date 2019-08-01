@@ -10,14 +10,14 @@ export class DialogContentExampleDialogComponent implements OnInit {
 
   cancelButton = false;
   deleteButton = true;
-  constructor(private dialogRef: MatDialogRef<DialogContentExampleDialogComponent>, 
+  constructor(private dialogRef: MatDialogRef<DialogContentExampleDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
   }
 
   cancel() {
-    this.dialogRef.close({ data: this.cancelButton});
+    this.dialogRef.close({ data: this.cancelButton });
   }
 
   delete() {

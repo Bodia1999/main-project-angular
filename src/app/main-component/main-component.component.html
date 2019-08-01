@@ -8,20 +8,37 @@
         </div>
         <div class="form-group">
           <label for="formGroupExampleInput2">Surname</label>
-          <input type="text" [(ngModel)]="surname" name="surname" class="form-control" id="formGroupExampleInput2"
+          <input type="text" [(ngModel)]="surname" name="surname" class="form-control" id="formGroupExampleInput6"
             placeholder="Another input">
         </div>
         <div class="form-group">
           <label for="formGroupExampleInput2">Phone number</label>
           <input type="text" [(ngModel)]="phoneNumber" name="phoneNumber" class="form-control"
-            id="formGroupExampleInput2" placeholder="Another input">
+            id="formGroupExampleInput5" placeholder="Another input">
         </div>
         <div class="form-group">
           <label for="formGroupExampleInput2">Email</label>
           <input type="text" [(ngModel)]="email" name="email" class="form-control" id="formGroupExampleInput2"
             placeholder="Another input">
         </div>
-        <button type="button" (click)="openWindow()" class="btn btn-outline-success">Save changes</button>
+        <div *ngIf="changePasswordButton" class="form-group">
+          <label for="formGroupExampleInput2">Old password</label>
+          <input type="password" [(ngModel)]="oldPassword" name="oldPassword" class="form-control"
+            id="formGroupExampleInput4" placeholder="Enter old password">
+        </div>
+        <div *ngIf="changePasswordButton" class="form-group">
+          <label for="formGroupExampleInput2">New password</label>
+          <input type="password" [(ngModel)]="newPassword" name="newPassword" class="form-control" id="formGroupExampleInput3"
+            placeholder="Enter new password">
+        </div>
+        <button *ngIf="!changePasswordButton" (click)="openCloseFormToChangePassword()" type="button"
+          class="btn btn-light">Change password</button>
+        <span *ngIf="changePasswordButton"><button (click)="openCloseFormToChangePassword()" type="button"
+            class="btn btn-danger closePasswordForm">&#215;</button></span>
+        <button type="button" *ngIf="!changePasswordButton" (click)="openWindow()" class="btn btn-outline-success">Save
+          changes</button>
+        <button type="button" *ngIf="changePasswordButton" (click)=" openDialogToChangePassword()"
+          class="btn btn-outline-success save-password">Save new password</button>
       </form>
     </div>
     <div class="listOfCards">

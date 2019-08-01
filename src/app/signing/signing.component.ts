@@ -15,12 +15,13 @@ export class SigningComponent implements OnInit {
   url = 'http://localhost:8000/api/auth/signin';
   token = '';
   checker = true;
+  
   constructor(
     private http: HttpClient,
     private router: Router,
     private cookies: CookieService,
     private data: DataService
-    ) { }
+  ) { }
 
 
   ngOnInit() {
@@ -34,7 +35,6 @@ export class SigningComponent implements OnInit {
   ngOnChange() {
 
   }
-
   login(emailIn: string, passIn: string) {
     console.log(emailIn + ' ' + passIn);
     this.postData = {
@@ -42,12 +42,19 @@ export class SigningComponent implements OnInit {
       password: passIn
     };
     this.http.post(this.url, this.postData).subscribe(
-      data => { this.data.changeMessage(false);
-                this.convertData(data.tokenType, data.accessToken);
-                this.checker = true;
-                console.log(this.checker);
-                this.router.navigate(['/profile']); },
-      error => {alert('Check your input data'); console.log(error)});
+      data => {
+        this.data.changeMessage(false);
+        this.convertData(data.tokenType, data.accessToken);
+        this.checker = true;
+        console.log(this.checker);
+        this.router.navigate(['/profile']);
+      },
+      error => {
+
+        alert('Check your input data');
+
+        console.log(error);
+      });
 
     //console.log(this.checker);
   }

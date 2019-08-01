@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./signing-up.component.css']
 })
 export class SigningUpComponent implements OnInit {
-  
+
   postData = {};
   url = 'http://localhost:8000/api/auth/signup';
   constructor(
@@ -30,8 +30,15 @@ export class SigningUpComponent implements OnInit {
       phoneNumber: phoneNumberIn
     };
     this.http.post(this.url, this.postData)
-      .subscribe(data => { this.router.navigate(['/sign-in']);
-                console.log(data)}, error => { alert('Check your input data'); console.log(error)});
+      .subscribe(data => {
+        this.router.navigate(['/sign-in']);
+      }, error => {
+        if (error.status === 409) {
+          alert('This email already in use!');
+        } else {
+          alert('Check your input data');
+        }
+      });
 
   }
 

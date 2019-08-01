@@ -72,3 +72,25 @@
   cursor: pointer;
   float: right;
 }
+
+.btn-light {
+  margin-left: 18%;
+  font-size: 12px;
+  border: 1px solid black;
+}
+
+.btn-outline-success {
+  margin-left: 13%;
+  margin-top: 3%;
+  font-size: 20px;
+}
+
+.closePasswordForm {
+  margin-left: 40%;
+  margin-bottom: 2%;
+}
+
+.save-password {
+  margin-left: 7%;
+  margin-bottom: 10%;
+}

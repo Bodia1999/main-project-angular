@@ -9,10 +9,12 @@
     <a class="p-2 text-dark" href="#">Pricing</a>
   </nav>
   <a class="btn btn-outline-primary" *ngIf="ifVisible" routerLink="/sign-in">Sign in</a>
-  <button type="button" (click)="account()" *ngIf="!ifVisible" class="btn btn-success btn-circle btn-lg">{{nameSurname.name | creatingName}}.{{nameSurname.surname | creatingName}}</button>
+  <button type="button" (click)="account()"
+   *ngIf="!ifVisible" class="btn btn-success btn-circle
+   btn-lg">{{nameSurname.name | creatingName}}.{{nameSurname.surname | creatingName}}</button>
   <button (click)="logOut()" type="button" *ngIf="!ifVisible" style="min-width: 100px" class="btn btn-danger">Log
     out</button>
-    
+  
 
 </div>
 
