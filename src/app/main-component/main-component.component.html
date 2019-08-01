@@ -1,0 +1,138 @@
+  <div class="main-container">
+    <div id="container">
+      <form>
+        <div class="form-group">
+          <label for="formGroupExampleInput">Name</label>
+          <input type="text" [(ngModel)]="name" name="name" class="form-control" id="formGroupExampleInput"
+            placeholder="Example input">
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Surname</label>
+          <input type="text" [(ngModel)]="surname" name="surname" class="form-control" id="formGroupExampleInput2"
+            placeholder="Another input">
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Phone number</label>
+          <input type="text" [(ngModel)]="phoneNumber" name="phoneNumber" class="form-control"
+            id="formGroupExampleInput2" placeholder="Another input">
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Email</label>
+          <input type="text" [(ngModel)]="email" name="email" class="form-control" id="formGroupExampleInput2"
+            placeholder="Another input">
+        </div>
+        <button type="button" (click)="updateUser()" class="btn btn-outline-success">Save changes</button>
+      </form>
+    </div>
+    <div class="listOfCards">
+      <div class="alert alert-success" role="alert">
+        All my credit cards. <a (click)="goToCreditCards()" class="alert-link">Check more detailed</a>
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let card of creditCards">{{card.nameOfCard}}<button class="delete"
+            (click)="deleteCreditCard(card.id)">&#10005;</button></li>
+
+      </ul>
+      <div class="create-button">
+        <span *ngIf="!addingCreditCard">Add new card&nbsp;&nbsp;&nbsp;&nbsp;<button (click)="openCloseFormToAddCard()"
+            type="button" class="btn btn-outline-dark">&#43;</button></span>
+
+
+        <span *ngIf="addingCreditCard">Close&nbsp;&nbsp;<button (click)="openCloseFormToAddCard()" type="button"
+            class="btn btn-danger">&#215;</button></span>
+        
+
+      </div>
+
+
+    </div>
+    <div style="min-width: 8%"></div>
+  </div>
+<button mat-button (click)="openDialog()">Open dialog</button>
+  <div *ngIf="addingCreditCard" class="hidden-container">
+    <div class="card-container">
+      <!--<aside class="col-sm-6">-->
+      <div class="card-body p-5">
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="nav-tab-card">
+            <p class="alert alert-success">Some text success or error</p>
+            <form role="form">
+              <div class="form-group">
+                <label for="username">Full name (on the card)</label>
+                <input type="text" class="form-control" name="username" placeholder="" required="">
+              </div> <!-- form-group.// -->
+              <div class="form-group">
+                <label for="username">Card`s name</label>
+                <input type="text" #nameCard class="form-control" name="cardName" placeholder="" required="">
+              </div> <!-- form-group.// -->
+
+              <div class="form-group">
+                <label for="cardNumber">Card number</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" name="cardNumber" placeholder="">
+                  <div class="input-group-append">
+                    <span class="input-group-text text-muted">
+                      <i class="fab fa-cc-visa"></i>   <i class="fab fa-cc-amex"></i>  
+                      <i class="fab fa-cc-mastercard"></i>
+                    </span>
+                  </div>
+                </div>
+              </div> <!-- form-group.// -->
+              <div class="row">
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <label><span class="hidden-xs">Expiration</span> </label>
+                    <div class="form-inline">
+                      <select class="form-control" style="width:45%">
+                        <option selected disabled>MM</option>
+                        <option>01 - January</option>
+                        <option>02 - February</option>
+                        <option>03 - March</option>
+                        <option>04 - April</option>
+                        <option>05 - May</option>
+                        <option>06 - June</option>
+                        <option>07 - July</option>
+                        <option>08 - August</option>
+                        <option>09 - September</option>
+                        <option>10 - October</option>
+                        <option>11 - November</option>
+                        <option>12 - December</option>
+                      </select>
+                      <span style="width:10%; text-align: center"> / </span>
+                      <select class="form-control" style="width:45%">
+                        <option selected disabled>YY</option>
+                        <option>2019</option>
+                        <option>2020</option>
+                        <option>2021</option>
+                        <option>2022</option>
+                        <option>2023</option>
+                        <option>2024</option>
+                        <option>2025</option>
+                        <option>2026</option>
+                        <option>2027</option>
+                        <option>2028</option>
+                        <option>2029</option>
+                        <option>2030</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label data-toggle="tooltip" title=""
+                      data-original-title="3 digits code on back side of the card">CVV <i
+                        class="fa fa-question-circle"></i></label>
+                    <input class="form-control" required="" type="text">
+                  </div> <!-- form-group.// -->
+                </div>
+              </div> <!-- row.// -->
+              <button (click)="saveCreditCardToDB(nameCard.value)" class="subscribe btn btn-primary btn-block"
+                type="button"> Confirm
+              </button>
+            </form>
+          </div> <!-- tab-pane.// -->
+        </div>
+      </div>
+      <!-- </aside>-->
+    </div>
+  </div>

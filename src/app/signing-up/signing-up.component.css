@@ -1,0 +1,8 @@
+.main-form {
+max-width: 45%;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+}

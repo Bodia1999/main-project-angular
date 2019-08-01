@@ -1,0 +1,164 @@
+/*.container {
+  max-width: 960px;
+  margin: 0 auto;
+  background: #f9f9f9;
+  font-size: 24px;
+  padding: 25px;
+}*/
+
+/*.parallax {
+  background: url('../../../moraine-lake-3840x2512-banff-national-park-rocky-mountains-4k-5910.jpg') no-repeat center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 500px;
+}
+
+.parallax1 {
+  background: url('../../../moraine-lake-canada-4k-banff-mountains.jpg') no-repeat center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 500px;
+}*/
+
+/*.parallax {
+    
+  min-height: 400px;
+  background: transparent;
+}
+
+html,
+body {
+  font-family: Open Sans;
+  font-size: 18px;
+  line-height: 28px;
+  scroll-behavior: smooth;
+}
+
+.image {
+  
+}
+
+.MainContainer {
+  perspective: 1px;
+  transform-style: preserve-3d;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.ContentContainer {
+  position: relative;
+  display: block;
+  background-color: white;
+  z-index: 1;
+}
+
+.Content {
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 75px 0;
+}
+
+p {
+  margin: 75px 0;
+}
+
+.ParallaxContainer {
+  display: flex;
+  flex: 1 0 auto;
+  position: relative;
+  z-index: -1;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  transform: translateZ(-4px) scale(2);
+}
+
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,800');
+
+*/
+
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+section.section:last-child {
+  margin-bottom: 0;
+}
+
+section.section h2 {
+  margin-bottom: 40px;
+  font-family: "Roboto Slab", serif;
+  font-size: 30px;
+}
+
+section.section p {
+  margin-bottom: 40px;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+section.section p:last-child {
+  margin-bottom: 0;
+}
+
+section.section.content {
+  padding: 40px 0;
+}
+
+section.section.parallax {
+  height: 600px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+section.section.parallax h1 {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 48px;
+  line-height: 600px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+section.section.parallax-1 {
+  background-image: url("../../../moraine-lake-canada-4k-banff-mountains.jpg");
+}
+
+section.section.parallax-2 {
+  background-image: url("../../../moraine-lake-3840x2512-banff-national-park-rocky-mountains-4k-5910.jpg");
+}
+
+section.section.parallax-3 {
+  background-image: url("../../../moraine-lake-3840x2160-snow-winter-4k-3373.jpg");
+}
+
+section.section.parallax-4 {
+  background-image: url("https://wallpapersmug.com/download/3840x2400/587df9/sunrise-moraine-lake-alberta-canada-5k.jpg");
+}
+
+@media all and (min-width: 600px) {
+  section.section h2 {
+    font-size: 42px;
+  }
+
+  section.section p {
+    font-size: 20px;
+  }
+
+  section.section.parallax h1 {
+    font-size: 96px;
+  }
+}
+
+@media all and (min-width: 960px) {
+  section.section.parallax h1 {
+    font-size: 160px;
+  }
+}
