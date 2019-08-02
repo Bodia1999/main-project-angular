@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@an
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { DialogContentExampleDialogComponent } from '../dialogComponent/dialog-content-example-dialog/dialog-content-example-dialog.component';
 import { SigningComponent } from '../signing/signing.component';
+import { StripeScriptTag, Stripe } from 'stripe-angular';
 
 @Component({
   selector: 'app-main-component',
@@ -33,7 +34,7 @@ export class MainComponentComponent implements OnInit {
   urlSaveCardToUser = 'http://localhost:8000/creditCard/save';
   urlToDeleteCard = 'http://localhost:8000/creditCard/delete';
   urlToChangePassword = 'http://localhost:8000/api/users/changePassword';
-
+  private publishableKey = 'pk_test_aJLasjZs68TE0fDDJODrLwwt007plWc5hZ';
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -41,7 +42,9 @@ export class MainComponentComponent implements OnInit {
     private nameService: NameService,
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
-  ) { }
+  ) {
+
+  }
 
   ngOnInit() {
     if (!sessionStorage.getItem('token')) {
@@ -62,7 +65,12 @@ export class MainComponentComponent implements OnInit {
         this.changeData(data);
         this.creditCards = data.card;
         sessionStorage.setItem('id', data.id);
-      }, error => console.log(error));
+      }, error => {
+        console.log(error);
+        alert('Something goes wrong! Relogin please');
+        this.router.navigate(['/sign-in']);
+        sessionStorage.removeItem('token');
+      });
   }
 
   changingValue(data) {
@@ -111,7 +119,17 @@ export class MainComponentComponent implements OnInit {
   }
 
   saveCreditCardToDB(cardNameIn) {
-    const idIn = parseInt(sessionStorage.getItem('id'));
+    const stripe = Stripe(this.publishableKey).elements();
+    const newObject = {
+      type: 'visa',
+      number: '4242424242424242',
+      exp_month: 8,
+      exp_year: 2020,
+      cvc: '314'
+    };
+    const value = stripe.create('card');
+    console.log(value.mount(newObject));
+    /*const idIn = parseInt(sessionStorage.getItem('id'));
     console.log(cardNameIn);
     let creditCardObject: object;
     creditCardObject = {
@@ -127,7 +145,7 @@ export class MainComponentComponent implements OnInit {
       this.creditCards.push(data);
       this.addingCreditCard = false; alert('Your card was saved!');
     }, error => console.log(error));
-
+*/
   }
 
   deleteCreditCard(idIn) {

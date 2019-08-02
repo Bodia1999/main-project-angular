@@ -14,15 +14,18 @@ import { DialogContentExampleDialogComponent } from './dialogComponent/dialog-co
 export class AppComponent {
   title = 'main-project';
   ifVisible: boolean;
-  nameSurname = {};
+  nameSurname = {
+    name: 'name',
+    surname: 'surname'
+  };
   constructor(
     private cookies: CookieService,
     private data: DataService,
     private router: Router,
     private nameSurnameService: NameService,
     private dialog: MatDialog
-    ) {
-    }
+  ) {
+  }
 
   ngOnInit() {
     /*if (sessionStorage.getItem('token')) {
@@ -42,18 +45,18 @@ export class AppComponent {
       this.nameSurname = JSON.parse(sessionStorage.getItem('nameSurname'));
     }
     console.log(this.nameSurname);
-    
+
   }
 
 
   ngOnChanges() {
-   /* if (sessionStorage.getItem('token')) {
-      this.ifVisible = false;
-      console.log(this.ifVisible);
-    } else {
-      this.ifVisible = true;
-      console.log(this.ifVisible);
-    }*/
+    /* if (sessionStorage.getItem('token')) {
+       this.ifVisible = false;
+       console.log(this.ifVisible);
+     } else {
+       this.ifVisible = true;
+       console.log(this.ifVisible);
+     }*/
 
     this.data.currentMessage.subscribe(message => this.ifVisible = message);
     this.nameSurnameService.currentMessage.subscribe(message => this.nameSurname = message);
@@ -65,7 +68,7 @@ export class AppComponent {
     sessionStorage.removeItem('token');
     sessionStorage.setItem('ifVisible', 'true');
     this.router.navigate(['/']);
-  }
+  } 
 
   account() {
     this.router.navigate(['/profile/my-info']);

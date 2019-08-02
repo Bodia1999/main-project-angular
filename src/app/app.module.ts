@@ -23,7 +23,7 @@ import { NameService } from './service/name.service';
 import { LetterToUppercasePipe } from './pipes/letter-to-uppercase.pipe';
 import { CreatingNamePipe } from './pipes/creating-name.pipe';
 import { DialogContentExampleDialogComponent } from './dialogComponent/dialog-content-example-dialog/dialog-content-example-dialog.component';
-
+import { Module as StripeModule } from 'stripe-angular';
 
 const appRoutes: Routes = [
   { path: '', component: FirstPageComponent },
@@ -76,6 +76,7 @@ const appRoutes: Routes = [
     MatCheckboxModule,
     MatTableModule,
     BrowserAnimationsModule,
+    StripeModule.forRoot(),
   ],
   providers: [CookieService, DataService, NameService, LetterToUppercasePipe],
   bootstrap: [AppComponent],
