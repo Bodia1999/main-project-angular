@@ -72,21 +72,21 @@
         <div class="tab-content">
           <div class="tab-pane fade show active" id="nav-tab-card">
             <p class="alert alert-success">Some text success or error</p>
-            <form role="form">
+            <form >
               <div class="form-group">
                 <label for="username">Full name (on the card)</label>
-                <input type="text" required="required" class="form-control" name="username" placeholder="" required="">
+                <input type="text" #name required class="form-control" name="username" placeholder="" required="">
               </div> <!-- form-group.// -->
               <div class="form-group">
                 <label for="username">Card`s name</label>
-                <input type="text" required="required" #nameCard class="form-control" name="cardName" placeholder=""
+                <input type="text" #cardName required #nameCard class="form-control" name="cardName" placeholder=""
                   required="">
               </div> <!-- form-group.// -->
 
               <div class="form-group">
                 <label for="cardNumber">Card number</label>
                 <div class="input-group">
-                  <input type="text" required="required" class="form-control" name="cardNumber" placeholder="">
+                  <input type="text" maxlength="16" #cardNumber required class="form-control" name="cardNumber" placeholder="">
                   <div class="input-group-append">
                     <span class="input-group-text text-muted">
                       <i class="fab fa-cc-visa"></i>   <i class="fab fa-cc-amex"></i>  
@@ -100,7 +100,7 @@
                   <div class="form-group">
                     <label><span class="hidden-xs">Expiration</span> </label>
                     <div class="form-inline">
-                      <select class="form-control" required="required" style="width:45%">
+                      <select class="form-control" #month required style="width:45%">
                         <option selected disabled>MM</option>
                         <option>01 - January</option>
                         <option>02 - February</option>
@@ -116,7 +116,7 @@
                         <option>12 - December</option>
                       </select>
                       <span style="width:10%; text-align: center"> / </span>
-                      <select required="required" class="form-control" style="width:45%">
+                      <select #year required class="form-control" style="width:45%">
                         <option selected disabled>YY</option>
                         <option>2019</option>
                         <option>2020</option>
@@ -139,11 +139,15 @@
                     <label data-toggle="tooltip" title=""
                       data-original-title="3 digits code on back side of the card">CVV <i
                         class="fa fa-question-circle"></i></label>
-                    <input class="form-control" required="" type="text">
+                    <input class="form-control" name="cvv" maxlength="4" #cvc required type="text">
                   </div> <!-- form-group.// -->
                 </div>
               </div> <!-- row.// -->
-              <button (click)="saveCreditCardToDB(nameCard.value)" class="subscribe btn btn-primary btn-block"
+              <button
+                (click)="saveCreditCardToStripe(cardName.value, name.value, cardNumber.value, month.value, year.value, cvc.value);
+                cardName.value = '';name.value = '';cardNumber.value = '';month.value = '';year.value = '';cvc.value =
+                '';"
+                class="subscribe btn btn-primary btn-block"
                 type="button"> Confirm
               </button>
             </form>
@@ -153,3 +157,5 @@
       <!-- </aside>-->
     </div>
   </div>
+
+  

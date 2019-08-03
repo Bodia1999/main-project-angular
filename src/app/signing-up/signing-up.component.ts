@@ -44,14 +44,14 @@ export class SigningUpComponent implements OnInit {
           email: emailIn,
           password: passwordIn
         };
-        this.http.post(this.urlToLogin, this.postData).subscribe(
+        /*this.http.post(this.urlToLogin, this.postData).subscribe(
           dataIn => {
             this.token = dataIn.tokenType + ' ' + dataIn.accessToken;
             this.creatingNumberInStripe(this.email, this.token, id);
           },
           error => {
             console.log(error);
-          });
+          });*/
         this.router.navigate(['/sign-in']);
       }, error => {
         if (error.status === 409) {

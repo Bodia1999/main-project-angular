@@ -21,6 +21,7 @@ export class MainComponentComponent implements OnInit {
   surname = '';
   email = '';
   phoneNumber = '';
+  stripeCustomerId = '';
   putData = {};
   nameSurnameObject = {};
   creditCards = [];
@@ -32,6 +33,7 @@ export class MainComponentComponent implements OnInit {
   urlGetUser = 'http://localhost:8000/api/users/me';
   urlUpdateUser = 'http://localhost:8000/api/users/update';
   urlSaveCardToUser = 'http://localhost:8000/creditCard/save';
+  urlSaveCardToStripe = 'http://localhost:8000/api/chargeController/addCard';
   urlToDeleteCard = 'http://localhost:8000/creditCard/delete';
   urlToChangePassword = 'http://localhost:8000/api/users/changePassword';
   private publishableKey = 'pk_test_aJLasjZs68TE0fDDJODrLwwt007plWc5hZ';
@@ -51,6 +53,7 @@ export class MainComponentComponent implements OnInit {
       this.router.navigate(['/']);
     }
     this.gettingUser();
+
   }
 
   gettingUser() {
@@ -79,6 +82,7 @@ export class MainComponentComponent implements OnInit {
     this.surname = data.surname;
     this.email = data.email;
     this.phoneNumber = data.phoneNumber;
+    this.stripeCustomerId = data.stripeCustomerId;
   }
 
   updateUser() {
@@ -118,40 +122,49 @@ export class MainComponentComponent implements OnInit {
     this.addingCreditCard = !this.addingCreditCard;
   }
 
-  saveCreditCardToDB(cardNameIn) {
-    const stripe = Stripe(this.publishableKey).elements();
-    const newObject = {
-      type: 'visa',
-      number: '4242424242424242',
-      exp_month: 8,
-      exp_year: 2020,
-      cvc: '314'
+  saveCreditCardToStripe(cardName, cardHolderName, cardNumberIn, month, year, cvcIn) {
+    const newMonth = month.substring(0, 2);
+    const body = {
+      name: cardHolderName,
+      number: cardNumberIn,
+      expiryMonth: newMonth,
+      expiryYear: year,
+      cvc: cvcIn,
+      customerStripeId: this.stripeCustomerId
     };
-    const value = stripe.create('card');
-    console.log(value.mount(newObject));
-    /*const idIn = parseInt(sessionStorage.getItem('id'));
-    console.log(cardNameIn);
-    let creditCardObject: object;
-    creditCardObject = {
-      userId: idIn,
-      nameOfCard: cardNameIn
+    console.log(body);
+    this.http.post(this.urlSaveCardToStripe, body, {
+      headers: {
+        'Authorization': sessionStorage.getItem('token')
+      },
+      responseType: 'text'
+    }).subscribe(data => {
+      this.addingCreditCard = false;
+      this.saveCreditCardToDb(cardName, data);
+    }, error => {
+      alert('All fields are required!');
+      console.log(error);
+    });
+  }
+
+  saveCreditCardToDb(cardName, stripeCardIdIn) {
+    const body = {
+      userId: this.id,
+      nameOfCard: cardName,
+      stripeCardId: stripeCardIdIn
     };
-    this.http.post(this.urlSaveCardToUser, creditCardObject, {
+
+    this.http.post(this.urlSaveCardToUser, body, {
       headers: {
         'Authorization': sessionStorage.getItem('token')
       }
-    }
-    ).subscribe(data => {
-      this.creditCards.push(data);
-      this.addingCreditCard = false; alert('Your card was saved!');
-    }, error => console.log(error));
-*/
+    }).subscribe(data => { this.creditCards.push(data); console.log(data); }, error => console.log(error));
+
   }
 
   deleteCreditCard(idIn) {
     console.log(this.creditCards);
-    //this.creditCards = this.creditCards.filter(t => t !==  );
-    this.http.delete(this.urlToDeleteCard + '/' + idIn, {
+    this.http.delete(this.urlToDeleteCard + '/' + idIn + '/' + this.stripeCustomerId, {
       headers: {
         'Authorization': sessionStorage.getItem('token')
       }
