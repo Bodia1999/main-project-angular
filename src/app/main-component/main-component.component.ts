@@ -44,7 +44,8 @@ export class MainComponentComponent implements OnInit {
     private nameService: NameService,
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
-  ) {
+
+    ) {
 
   }
 
@@ -67,6 +68,7 @@ export class MainComponentComponent implements OnInit {
         this.changingValue(data);
         this.changeData(data);
         this.creditCards = data.card;
+        sessionStorage.setItem('cusId', data.stripeCustomerId);
         sessionStorage.setItem('id', data.id);
       }, error => {
         console.log(error);
@@ -126,6 +128,7 @@ export class MainComponentComponent implements OnInit {
     const newMonth = month.substring(0, 2);
     const body = {
       name: cardHolderName,
+      nameOfCreditCard: cardName,
       number: cardNumberIn,
       expiryMonth: newMonth,
       expiryYear: year,
@@ -133,17 +136,18 @@ export class MainComponentComponent implements OnInit {
       customerStripeId: this.stripeCustomerId
     };
     console.log(body);
-    this.http.post(this.urlSaveCardToStripe, body, {
+    this.http.post(this.urlSaveCardToUser + '/' + this.id, body, {
       headers: {
         'Authorization': sessionStorage.getItem('token')
       },
       responseType: 'text'
     }).subscribe(data => {
+      this.creditCards.push(data);
       this.addingCreditCard = false;
-      this.saveCreditCardToDb(cardName, data);
+      //this.saveCreditCardToDb(cardName, data);
     }, error => {
-      alert('All fields are required!');
-      console.log(error);
+        alert(JSON.parse(error.error).message);
+      console.log(JSON.parse(error.error).message);
     });
   }
 

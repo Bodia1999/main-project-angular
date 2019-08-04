@@ -15,7 +15,7 @@ export class SigningComponent implements OnInit {
   url = 'http://localhost:8000/api/auth/signin';
   token = '';
   checker = true;
-  
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -51,7 +51,7 @@ export class SigningComponent implements OnInit {
       },
       error => {
 
-        alert('Check your input data');
+        alert(error.error.message);
 
         console.log(error);
       });

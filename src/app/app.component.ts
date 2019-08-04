@@ -57,10 +57,8 @@ export class AppComponent {
        this.ifVisible = true;
        console.log(this.ifVisible);
      }*/
-
     this.data.currentMessage.subscribe(message => this.ifVisible = message);
     this.nameSurnameService.currentMessage.subscribe(message => this.nameSurname = message);
-
   }
   logOut() {
     this.data.changeMessage(true);
@@ -68,7 +66,7 @@ export class AppComponent {
     sessionStorage.removeItem('token');
     sessionStorage.setItem('ifVisible', 'true');
     this.router.navigate(['/']);
-  } 
+  }
 
   account() {
     this.router.navigate(['/profile/my-info']);

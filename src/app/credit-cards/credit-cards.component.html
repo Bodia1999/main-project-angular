@@ -1,0 +1,27 @@
+<div>
+  <div *ngFor="let data of cardData" class="credit-card-wrap">
+    <div class="mk-icon-world-map"></div>
+    <div class="credit-card-inner">
+      <header class="header">
+        <div class="credit-logo">
+          <div class="shape"><span class="txt">PB</span></div> <span class="text">{{data.brand}}</span>
+        </div>
+      </header>
+      <div class="mk-icon-sim"></div>
+      <div class="credit-font credit-card-number" data-text="4716">**** **** **** {{data.last4}}</div>
+      <footer class="footer">
+        <div class="clearfix">
+          <div class="pull-left">
+            <div class="credit-card-date"><span class="title">Expires End</span><span
+                class="credit-font">{{data.expMonth}}/{{data.expYear}}</span>
+            </div>
+            <div class="credit-font credit-author">{{data.name}}</div>
+          </div>
+          <div class="pull-right">
+            <div class="mk-icon-visa"></div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>

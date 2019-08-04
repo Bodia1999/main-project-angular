@@ -54,6 +54,7 @@ export class SigningUpComponent implements OnInit {
           });*/
         this.router.navigate(['/sign-in']);
       }, error => {
+        console.log(error);
         if (error.status === 409) {
           alert('This email already in use!');
         } else {

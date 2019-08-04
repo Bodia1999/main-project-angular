@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { DialogContentExampleDialogComponent } from '../dialogComponent/dialog-content-example-dialog/dialog-content-example-dialog.component';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-credit-cards',
@@ -9,10 +10,29 @@ import { DialogContentExampleDialogComponent } from '../dialogComponent/dialog-c
 })
 export class CreditCardsComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  urlToGetAllCards = 'http://localhost:8000/api/chargeController/getAllCardsByCustomer/';
+  cardData = [];
+
+  constructor(private dialog: MatDialog,
+    private router: Router,
+    private http: HttpClient
+  ) { }
 
   ngOnInit() {
-  }
+    this.getAllCards();
+   }
 
-  
+  getAllCards() {
+    this.http.get(this.urlToGetAllCards + '' + sessionStorage.getItem('cusId'), {
+      headers: {
+        'Authorization': sessionStorage.getItem('token')
+      }
+    }).subscribe(data => {
+      this.cardData = data;
+      console.log(this.cardData);
+
+    }, error => {
+      console.log(error);
+    });
+  }
 }
