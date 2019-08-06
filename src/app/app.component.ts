@@ -35,6 +35,11 @@ export class AppComponent {
       this.ifVisible = true;
       console.log(this.ifVisible);
     }*/
+    this.nameSurname = {
+      name: '',
+      surname: ''
+    };
+    this.nameSurnameService.changeMessage(this.nameSurname);
     this.data.currentMessage.subscribe(message => this.ifVisible = message);
     this.nameSurnameService.currentMessage.subscribe(message => this.nameSurname = message);
     if (sessionStorage.getItem('token')) {

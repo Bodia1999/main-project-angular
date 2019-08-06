@@ -45,8 +45,9 @@
       <div class="alert alert-success" role="alert">
         All my credit cards. <a (click)="goToCreditCards()" class="alert-link">Check more detailed</a>
       </div>
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let card of creditCards">{{card.nameOfCard}}<button class="delete"
+      <ul class="list-group" *ngFor="let card of creditCards">
+        <li class="list-group-item"><span style="cursor: pointer;" (click)="openCardDialog(card.stripeCardId)">{{card.nameOfCard}}</span><button
+            class="delete"
             (click)="openDialog(card.id)">&#10005;</button></li>
 
       </ul>
@@ -159,3 +160,25 @@
   </div>
 
   
+
+
+  <!--<form action="#">
+    <p>
+      <input (click)="checkedRadio(input1.value)" #input1 type="radio" id="test1" name="radio-group" value="Apple">
+      <label for="test1">Apple</label>
+    </p>
+    <p>
+      <input (click)="checkedRadio(input2.value)" #input2 type="radio" id="test2" name="radio-group" value="Peach">
+      <label for="test2">Peach</label>
+    </p>
+    <p>
+      <input (click)="checkedRadio(input3.value)" #input3 type="radio" id="test3" name="radio-group" value="Orange">
+      <label for="test3">Orange</label>
+    </p>
+  </form>
+  -->
+
+
+  
+
+  <button (click)="openSubmittingCard()">Click</button>

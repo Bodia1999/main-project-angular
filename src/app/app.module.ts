@@ -24,6 +24,9 @@ import { LetterToUppercasePipe } from './pipes/letter-to-uppercase.pipe';
 import { CreatingNamePipe } from './pipes/creating-name.pipe';
 import { DialogContentExampleDialogComponent } from './dialogComponent/dialog-content-example-dialog/dialog-content-example-dialog.component';
 import { Module as StripeModule } from 'stripe-angular';
+import { CreditCardSubmitComponent } from './dialogComponent/credit-card-submit/credit-card-submit.component';
+import { CreditService } from './service/creditService';
+import { PopupCardComponent } from './dialogComponent/popup-card/popup-card.component';
 
 const appRoutes: Routes = [
   { path: '', component: FirstPageComponent },
@@ -64,6 +67,8 @@ const appRoutes: Routes = [
     LetterToUppercasePipe,
     CreatingNamePipe,
     DialogContentExampleDialogComponent,
+    CreditCardSubmitComponent,
+    PopupCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,9 +83,9 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     StripeModule.forRoot(),
   ],
-  providers: [CookieService, DataService, NameService, LetterToUppercasePipe],
+  providers: [CookieService, DataService, NameService, CreditService, LetterToUppercasePipe],
   bootstrap: [AppComponent],
-  entryComponents: [DialogContentExampleDialogComponent]
+  entryComponents: [DialogContentExampleDialogComponent, CreditCardSubmitComponent, PopupCardComponent]
 
 })
 export class AppModule { }

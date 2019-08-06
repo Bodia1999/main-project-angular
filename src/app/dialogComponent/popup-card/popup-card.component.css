@@ -5,6 +5,15 @@
   font-family: 'Space Mono', monospace;
 }
 
+.mat-dialog-content {
+  overflow-y: hidden !important;
+}
+
+.mat-raised-button {
+    display: flex;
+    justify-content: center;
+}
+
 body,
 html {
   margin: 0;
@@ -20,6 +29,7 @@ body {
   display: -webkit-flex;
   -webkit-align-items: center;
   -webkit-justify-content: center;
+  
   background-image: linear-gradient(to right top, #a2beeb, #8ecfee, #8edde5, #a4e7d5, #c7eec7);
   flex-direction: column;
   -webkit-flex-direction: column;
@@ -37,8 +47,8 @@ body {
   -webkit-perspective: 600px;
   -moz-perspective: 600px;
   perspective: 600px;
-  margin: 4%;
-  max-width: 50%;
+  margin: 8% 10%;
+  background-color: #424242;
 
 }
 
@@ -158,16 +168,7 @@ body {
   position: relative;
 }
 
-.card__secret:before {
-  content: '';
-  position: absolute;
-  top: -3px;
-  left: -3px;
-  height: calc(100% + 6px);
-  width: calc(100% - 42px);
-  border-radius: 4px;
-  background: repeating-linear-gradient(45deg, #ededed, #ededed 5px, #f9f9f9 5px, #f9f9f9 10px);
-}
+
 
 .card__back-logo {
   position: absolute;
@@ -181,22 +182,17 @@ body {
   left: 15px;
 }
 
-.card:hover .card__front {
-  -webkit-transform: rotateY(180deg);
-  -moz-transform: rotateY(180deg);
 
-}
 
-.card:hover .card__back {
-  -webkit-transform: rotateY(0deg);
-  -moz-transform: rotateY(0deg);
-}
+
 
 .card-wrapper {
   width: 100%;
+  height: 240px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  min-width: 250px;
 }
 
 .logo-master {

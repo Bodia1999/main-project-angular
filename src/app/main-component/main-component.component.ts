@@ -8,6 +8,10 @@ import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { DialogContentExampleDialogComponent } from '../dialogComponent/dialog-content-example-dialog/dialog-content-example-dialog.component';
 import { SigningComponent } from '../signing/signing.component';
 import { StripeScriptTag, Stripe } from 'stripe-angular';
+import { CreditCardSubmitComponent } from '../dialogComponent/credit-card-submit/credit-card-submit.component';
+import { CreditService } from '../service/creditService';
+import { DataService } from '../service/data.service';
+import { PopupCardComponent } from '../dialogComponent/popup-card/popup-card.component';
 
 @Component({
   selector: 'app-main-component',
@@ -44,8 +48,10 @@ export class MainComponentComponent implements OnInit {
     private nameService: NameService,
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
+    private creditService: CreditService,
+    private data: DataService
 
-    ) {
+  ) {
 
   }
 
@@ -68,10 +74,12 @@ export class MainComponentComponent implements OnInit {
         this.changingValue(data);
         this.changeData(data);
         this.creditCards = data.card;
+        this.creditService.changeMessage(this.creditCards);
         sessionStorage.setItem('cusId', data.stripeCustomerId);
         sessionStorage.setItem('id', data.id);
       }, error => {
         console.log(error);
+        this.data.changeMessage(true);
         alert('Something goes wrong! Relogin please');
         this.router.navigate(['/sign-in']);
         sessionStorage.removeItem('token');
@@ -104,7 +112,7 @@ export class MainComponentComponent implements OnInit {
       this.changingValue(data);
       alert('Your changes were saved!');
       this.changeData(data);
-    }, error => { console.log(error); alert('Something goes wrong. Please relogin'); });
+    }, error => { console.log(error); this.data.changeMessage(true); alert('Something goes wrong. Please relogin'); });
   }
 
   changeData(data) {
@@ -142,11 +150,13 @@ export class MainComponentComponent implements OnInit {
       },
       responseType: 'text'
     }).subscribe(data => {
-      this.creditCards.push(data);
+      console.log(data);
+      this.creditCards.push(JSON.parse(data));
+      console.log(this.creditCards);
       this.addingCreditCard = false;
       //this.saveCreditCardToDb(cardName, data);
     }, error => {
-        alert(JSON.parse(error.error).message);
+      alert(JSON.parse(error.error).message);
       console.log(JSON.parse(error.error).message);
     });
   }
@@ -278,6 +288,49 @@ export class MainComponentComponent implements OnInit {
       console.log(`Dialog result: ${result.data}`);
       if (result.data) {
         this.changePassword();
+      }
+    });
+  }
+
+  openSubmittingCard() {
+    const dialogRef = this.dialog.open(CreditCardSubmitComponent, {
+
+      data: {
+        container: this.creditCards,
+        button: 'Change',
+        mainMessage: 'Would you like to'
+      }
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === undefined) {
+        return;
+      }
+      console.log(`Dialog result: ${result.data}`);
+      // if (result.data) {
+      //this.changePassword();
+      //}
+    });
+  }
+
+  openCardDialog(id) {
+    const dialogRef = this.dialog.open(PopupCardComponent, {
+
+      height: '320px',
+      width: '450px',
+      data: {
+        cardId: id,
+        userId: sessionStorage.getItem('cusId')
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === undefined) {
+        return;
+      }
+      console.log(`Dialog result: ${result.data}`);
+      if (result.data) {
       }
     });
   }
