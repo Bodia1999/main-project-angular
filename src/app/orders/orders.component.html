@@ -17,8 +17,8 @@
       <td>{{data.stripeChargeId}}</td>
       <td>{{data.ticketEvolutionId}}</td>
       <td class="refund">{{data.ifRefunded | revertValue}}</td>
-      <td>{{data.createdAt}}</td>
-      <td>{{data.updatedAt}}</td>
+      <td>{{data.createdAt | revertTime}}</td>
+      <td>{{data.updatedAt | revertTime}}</td>
     </tr>
   </tbody>
 </table>
