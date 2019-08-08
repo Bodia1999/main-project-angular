@@ -81,7 +81,7 @@ p {
 
 
 .container {
-  max-width: 960px;
+  max-width: 95%;
   margin: 0 auto;
 }
 
@@ -127,20 +127,25 @@ section.section.parallax h1 {
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-section.section.parallax-1 {
+/*section.section.parallax-1 {
   background-image: url("../../../moraine-lake-canada-4k-banff-mountains.jpg");
+}*/
+section.section.parallax-1 {
+  background-image: url("https://wallpapersite.com/images/wallpapers/marshmello-4983x2933-live-concert-4k-7560.jpg");
 }
 
+
 section.section.parallax-2 {
-  background-image: url("../../../moraine-lake-3840x2512-banff-national-park-rocky-mountains-4k-5910.jpg");
+  background-image: url("https://wallpaperplay.com/walls/full/e/0/f/284994.jpg");
 }
 
 section.section.parallax-3 {
-  background-image: url("../../../moraine-lake-3840x2160-snow-winter-4k-3373.jpg");
+  background-image: url("https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80");
 }
 
+
 section.section.parallax-4 {
-  background-image: url("https://wallpapersmug.com/download/3840x2400/587df9/sunrise-moraine-lake-alberta-canada-5k.jpg");
+  background-image: url("http://www.4usky.com/data/out/21/164170517-concert-wallpapers.jpg");
 }
 
 @media all and (min-width: 600px) {
@@ -162,3 +167,20 @@ section.section.parallax-4 {
     font-size: 160px;
   }
 }
+
+.list-unstyled {
+  text-align: left;
+}
+
+
+
+.shadow-sm {
+  min-width: 225px;
+  max-width: 23%;
+}
+
+.card-deck {
+  display: flex;
+  justify-content: center;
+}
+

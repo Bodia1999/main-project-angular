@@ -27,6 +27,8 @@ import { Module as StripeModule } from 'stripe-angular';
 import { CreditCardSubmitComponent } from './dialogComponent/credit-card-submit/credit-card-submit.component';
 import { CreditService } from './service/creditService';
 import { PopupCardComponent } from './dialogComponent/popup-card/popup-card.component';
+import { RevertValuePipe } from './pipes/revert-value.pipe';
+import { RevertTimePipe } from './pipes/revert-time.pipe';
 
 const appRoutes: Routes = [
   { path: '', component: FirstPageComponent },
@@ -69,6 +71,8 @@ const appRoutes: Routes = [
     DialogContentExampleDialogComponent,
     CreditCardSubmitComponent,
     PopupCardComponent,
+    RevertValuePipe,
+    RevertTimePipe,
   ],
   imports: [
     BrowserModule,

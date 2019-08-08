@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'letterToUppercase'
+  name: 'letterToUpperCase'
 })
 export class LetterToUppercasePipe implements PipeTransform {
 
@@ -12,8 +12,8 @@ export class LetterToUppercasePipe implements PipeTransform {
       return;
     }
     this.letter = value.substring(0, 1).toUpperCase();
-    //this.lengthOfWord = value.length;
-    return this.letter;
+    this.lengthOfWord = value.length;
+    return this.letter + value.substr(1, this.lengthOfWord - 1);
   }
 
 }
