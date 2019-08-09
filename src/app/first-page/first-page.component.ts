@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { AppModule } from '../app.module';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-first-page',
@@ -15,7 +16,8 @@ export class FirstPageComponent implements OnInit {
   thirdSection = [];
   fourthSection = [];
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -35,11 +37,8 @@ export class FirstPageComponent implements OnInit {
       page: numberOfPage,
       perPage: 4
     };
-    this.http.post(this.url, body, {
-      headers: {
-        'Authorization': sessionStorage.getItem('token')
-      }
-    }).subscribe(data => {
+    this.http.post(this.url, body
+    ).subscribe(data => {
       if (numberOfPage === 1) {
       this.firstSection = data.events;
       }
@@ -58,6 +57,7 @@ export class FirstPageComponent implements OnInit {
   }
 
   click(value) {
-    console.log(value);
+    sessionStorage.setItem('eventId', value);
+    this.router.navigate(['/tickets']);
   }
 }

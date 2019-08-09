@@ -1,0 +1,33 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="box">
+  <div class="container">
+    <div class="row">
+
+      <div *ngFor="let ticket of ticketsArray" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+        <div class="box-part text-center">
+            <img class="card-img-top" src="https://ak4.picdn.net/shutterstock/videos/7188514/thumb/1.jpg"
+              alt="Card image cap" >
+
+          <div class="title">
+            <h4>{{ticket.wholesalePrice}}</h4>
+          </div>
+
+          <div class="text">
+            <span>Section: {{ticket.section}} Row: {{ticket.row}}</span>
+          </div>
+
+          <a href="#">Learn More</a>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

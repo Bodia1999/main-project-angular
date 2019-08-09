@@ -12,6 +12,7 @@ import { CreditCardSubmitComponent } from '../dialogComponent/credit-card-submit
 import { CreditService } from '../service/creditService';
 import { DataService } from '../service/data.service';
 import { PopupCardComponent } from '../dialogComponent/popup-card/popup-card.component';
+import { CreateCreditCardComponent } from '../dialogComponent/create-credit-card/create-credit-card.component';
 
 @Component({
   selector: 'app-main-component',
@@ -132,7 +133,7 @@ export class MainComponentComponent implements OnInit {
     this.addingCreditCard = !this.addingCreditCard;
   }
 
-  saveCreditCardToStripe(cardName, cardHolderName, cardNumberIn, month, year, cvcIn) {
+  /*saveCreditCardToStripe(cardName, cardHolderName, cardNumberIn, month, year, cvcIn) {
     const newMonth = month.substring(0, 2);
     const body = {
       name: cardHolderName,
@@ -159,7 +160,7 @@ export class MainComponentComponent implements OnInit {
       alert(JSON.parse(error.error).message);
       console.log(JSON.parse(error.error).message);
     });
-  }
+  }*/
 
   saveCreditCardToDb(cardName, stripeCardIdIn) {
     const body = {
@@ -332,6 +333,17 @@ export class MainComponentComponent implements OnInit {
       console.log(`Dialog result: ${result.data}`);
       if (result.data) {
       }
+    });
+  }
+
+  openCreatingCard() {
+    const dialogRef = this.dialog.open(CreateCreditCardComponent, {
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.creditCards.push(result.data);
+      this.addingCreditCard = result.addingCreditCard;
     });
   }
 }

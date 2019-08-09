@@ -29,9 +29,12 @@ import { CreditService } from './service/creditService';
 import { PopupCardComponent } from './dialogComponent/popup-card/popup-card.component';
 import { RevertValuePipe } from './pipes/revert-value.pipe';
 import { RevertTimePipe } from './pipes/revert-time.pipe';
+import { CreateCreditCardComponent } from './dialogComponent/create-credit-card/create-credit-card.component';
+import { TicketsComponent } from './tickets/tickets.component';
 
 const appRoutes: Routes = [
   { path: '', component: FirstPageComponent },
+  { path: 'tickets', component: TicketsComponent},
   { path: 'sign-in', component: SigningComponent },
   { path: 'sign-up', component: SigningUpComponent },
   {
@@ -73,6 +76,8 @@ const appRoutes: Routes = [
     PopupCardComponent,
     RevertValuePipe,
     RevertTimePipe,
+    CreateCreditCardComponent,
+    TicketsComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,7 +94,7 @@ const appRoutes: Routes = [
   ],
   providers: [CookieService, DataService, NameService, CreditService, LetterToUppercasePipe],
   bootstrap: [AppComponent],
-  entryComponents: [DialogContentExampleDialogComponent, CreditCardSubmitComponent, PopupCardComponent]
+  entryComponents: [DialogContentExampleDialogComponent, CreditCardSubmitComponent, PopupCardComponent, CreateCreditCardComponent]
 
 })
 export class AppModule { }

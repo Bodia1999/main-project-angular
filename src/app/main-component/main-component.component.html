@@ -52,7 +52,7 @@
 
       </ul>
       <div class="create-button">
-        <span *ngIf="!addingCreditCard">Add new card&nbsp;&nbsp;&nbsp;&nbsp;<button (click)="openCloseFormToAddCard()"
+        <span *ngIf="!addingCreditCard">Add new card&nbsp;&nbsp;&nbsp;&nbsp;<button (click)="openCreatingCard()"
             type="button" class="btn btn-outline-dark">&#43;</button></span>
 
 
@@ -66,10 +66,10 @@
     </div>
     <div style="min-width: 8%"></div>
   </div>
-  <div *ngIf="addingCreditCard" class="hidden-container">
-    <div class="card-container">
+  <!--<div *ngIf="addingCreditCard" class="hidden-container">
+    <div class="card-container">-->
       <!--<aside class="col-sm-6">-->
-      <div class="card-body p-5">
+    <!--  <div class="card-body p-5">
         <div class="tab-content">
           <div class="tab-pane fade show active" id="nav-tab-card">
             <p class="alert alert-success">Some text success or error</p>
@@ -77,12 +77,12 @@
               <div class="form-group">
                 <label for="username">Full name (on the card)</label>
                 <input type="text" #name required class="form-control" name="username" placeholder="" required="">
-              </div> <!-- form-group.// -->
+              </div> 
               <div class="form-group">
                 <label for="username">Card`s name</label>
                 <input type="text" #cardName required #nameCard class="form-control" name="cardName" placeholder=""
                   required="">
-              </div> <!-- form-group.// -->
+              </div> 
 
               <div class="form-group">
                 <label for="cardNumber">Card number</label>
@@ -95,7 +95,7 @@
                     </span>
                   </div>
                 </div>
-              </div> <!-- form-group.// -->
+              </div> 
               <div class="row">
                 <div class="col-sm-8">
                   <div class="form-group">
@@ -141,10 +141,9 @@
                       data-original-title="3 digits code on back side of the card">CVV <i
                         class="fa fa-question-circle"></i></label>
                     <input class="form-control" name="cvv" maxlength="4" #cvc required type="text">
-                  </div> <!-- form-group.// -->
+                  </div> 
                 </div>
-              </div> <!-- row.// -->
-              <button
+              </div>               <button
                 (click)="saveCreditCardToStripe(cardName.value, name.value, cardNumber.value, month.value, year.value, cvc.value);
                 cardName.value = '';name.value = '';cardNumber.value = '';month.value = '';year.value = '';cvc.value =
                 '';"
@@ -152,12 +151,12 @@
                 type="button"> Confirm
               </button>
             </form>
-          </div> <!-- tab-pane.// -->
+          </div> 
         </div>
       </div>
-      <!-- </aside>-->
+     
     </div>
-  </div>
+  </div>-->
 
   
 
