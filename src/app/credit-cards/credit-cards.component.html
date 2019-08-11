@@ -36,11 +36,11 @@
     
     <div class="card__front card__part">
       <img class="card__front-square card__square" src="https://image.ibb.co/cZeFjx/little_square.png">
-      <img class="card__front-logo card__logo" *ngIf="data.brand == 'Visa'"
+      <img class="card__front-logo card__logo" *ngIf="data.cardType == 'Visa'"
         src="https://www.fireeye.com/partners/strategic-technology-partners/visa-fireeye-cyber-watch-program/_jcr_content/content-par/grid_20_80_full/grid-20-left/image.img.png/1505254557388.png">
-        <img *ngIf="data.brand == 'MasterCard'" class="card__front-logo card__logo logo-master"
+        <img *ngIf="data.cardType == 'MasterCard'" class="card__front-logo card__logo logo-master"
           src="https://www.stickpng.com/assets/images/58482354cef1014c0b5e49c0.png" alt="">
-          <img *ngIf="data.brand == 'American Express'" class="card__front-logo card__logo logo-master"
+          <img *ngIf="data.cardType == 'American Express'" class="card__front-logo card__logo logo-master"
             src="https://www.etoday.kz/wp-content/uploads/2019/01/American-Express.jpg"
             alt="">
       <p class="card_numer">**** **** **** {{data.last4}}</p>
