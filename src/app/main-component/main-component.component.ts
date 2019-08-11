@@ -75,6 +75,7 @@ export class MainComponentComponent implements OnInit {
         this.changingValue(data);
         this.changeData(data);
         this.creditCards = data.card;
+        sessionStorage.setItem('creditCards', JSON.stringify(this.creditCards));
         this.creditService.changeMessage(this.creditCards);
         sessionStorage.setItem('cusId', data.stripeCustomerId);
         sessionStorage.setItem('id', data.id);
@@ -133,34 +134,7 @@ export class MainComponentComponent implements OnInit {
     this.addingCreditCard = !this.addingCreditCard;
   }
 
-  /*saveCreditCardToStripe(cardName, cardHolderName, cardNumberIn, month, year, cvcIn) {
-    const newMonth = month.substring(0, 2);
-    const body = {
-      name: cardHolderName,
-      nameOfCreditCard: cardName,
-      number: cardNumberIn,
-      expiryMonth: newMonth,
-      expiryYear: year,
-      cvc: cvcIn,
-      customerStripeId: this.stripeCustomerId
-    };
-    console.log(body);
-    this.http.post(this.urlSaveCardToUser + '/' + this.id, body, {
-      headers: {
-        'Authorization': sessionStorage.getItem('token')
-      },
-      responseType: 'text'
-    }).subscribe(data => {
-      console.log(data);
-      this.creditCards.push(JSON.parse(data));
-      console.log(this.creditCards);
-      this.addingCreditCard = false;
-      //this.saveCreditCardToDb(cardName, data);
-    }, error => {
-      alert(JSON.parse(error.error).message);
-      console.log(JSON.parse(error.error).message);
-    });
-  }*/
+
 
   saveCreditCardToDb(cardName, stripeCardIdIn) {
     const body = {
@@ -267,8 +241,7 @@ export class MainComponentComponent implements OnInit {
   convertData(tokenType: string, accessToken: string) {
     const token = tokenType + ' ' + accessToken;
     sessionStorage.setItem('token', token);
-    //this.cookies.set('token', this.token);
-    //return this.token;
+
   }
 
   openDialogToChangePassword() {
@@ -290,28 +263,6 @@ export class MainComponentComponent implements OnInit {
       if (result.data) {
         this.changePassword();
       }
-    });
-  }
-
-  openSubmittingCard() {
-    const dialogRef = this.dialog.open(CreditCardSubmitComponent, {
-
-      data: {
-        container: this.creditCards,
-        button: 'Change',
-        mainMessage: 'Would you like to'
-      }
-
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === undefined) {
-        return;
-      }
-      console.log(`Dialog result: ${result.data}`);
-      // if (result.data) {
-      //this.changePassword();
-      //}
     });
   }
 

@@ -31,6 +31,7 @@ import { RevertValuePipe } from './pipes/revert-value.pipe';
 import { RevertTimePipe } from './pipes/revert-time.pipe';
 import { CreateCreditCardComponent } from './dialogComponent/create-credit-card/create-credit-card.component';
 import { TicketsComponent } from './tickets/tickets.component';
+import { TicketService } from './service/ticketService';
 
 const appRoutes: Routes = [
   { path: '', component: FirstPageComponent },
@@ -92,7 +93,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     StripeModule.forRoot(),
   ],
-  providers: [CookieService, DataService, NameService, CreditService, LetterToUppercasePipe],
+  providers: [CookieService, DataService, NameService, CreditService, LetterToUppercasePipe, TicketService],
   bootstrap: [AppComponent],
   entryComponents: [DialogContentExampleDialogComponent, CreditCardSubmitComponent, PopupCardComponent, CreateCreditCardComponent]
 

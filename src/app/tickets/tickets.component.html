@@ -2,7 +2,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-
+<!--
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="box">
   <div class="container">
@@ -29,5 +29,25 @@
 
     </div>
   </div>
+</div>-->
+<div class="container">
+  <div class="card-deck mb-3 text-center">
+<div *ngFor="let ticket of ticketsArray" class="card mb-4 shadow-sm">
+  <div class="card-header">
+    <h4 class="my-0 font-weight-normal">{{ticket.type | letterToUpperCase}}</h4>
+  </div>
+  <div class="card-body">
+    <h1 class="card-title pricing-card-title">${{ticket.wholesalePrice}} <small class="text-muted"></small></h1>
+    <ul class="list-unstyled mt-3 mb-4">
+       <li><span style="font-weight: bold; ">Row: </span>{{ticket.row}}</li>
+       <li><span style="font-weight: bold;">Section: </span>{{ticket.section}}</li>
+       <li><span style="font-weight: bold;">When: </span>{{ticket.event.occursAt | revertTime}}</li>
+       <li><span style="font-weight: bold;">Quantity: </span>{{ticket.quantity}}</li>
+    </ul>
+    <button type="button" (click)="reserve(ticket.id)" class="btn btn-lg btn-block btn-outline-primary">Reserve</button>
+    <button type="button" (click)="openSubmittingCard(ticket.id, ticket.quantity)"
+      class="btn btn-lg btn-block btn-primary">Buy</button>
+  </div>
 </div>
-
+</div>
+</div>

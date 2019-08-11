@@ -1,8 +1,13 @@
-<table class="table">
+<table *ngIf="!ifVisibleTickets" style="margin-top: 1.5%" class="table table-striped table-dark">
   <thead>
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Paid sum</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Type of event</th>
+      <th scope="col">Row</th>
+      <th scope="col">Section</th>
+      <th scope="col">OccursAt</th>
       <th scope="col">Stripe charge ID</th>
       <th scope="col">Ticket order ID</th>
       <th scope="col">Refunded</th>
@@ -14,6 +19,11 @@
     <tr *ngFor="let data of responseData">
       <th scope="row">{{data.id}}</th>
       <td>${{data.amount}}</td>
+      <td class="refund">{{data.ticketResponse.quantity}}</td>
+      <td>{{data.ticketResponse.typeOfEvents | letterToUpperCase}}</td>
+      <td>{{data.ticketResponse.row}}</td>
+      <td>{{data.ticketResponse.section}}</td>
+      <td>{{data.ticketResponse.occursAt | revertTime}}</td>
       <td>{{data.stripeChargeId}}</td>
       <td>{{data.ticketEvolutionId}}</td>
       <td class="refund">{{data.ifRefunded | revertValue}}</td>
@@ -22,3 +32,40 @@
     </tr>
   </tbody>
 </table>
+
+
+<div *ngIf="ifVisibleTickets" style="margin-top: 1.5%" class="container">
+  <div class="card-deck mb-3 text-center">
+    <div *ngFor="let ticket of responseData" class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">{{ticket.ticketResponse.typeOfEvents | letterToUpperCase}}</h4>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title">${{ticket.amount}} <small class="text-muted"></small></h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li><span style="font-weight: bold; ">Row: </span>{{ticket.ticketResponse.row}}</li>
+          <li><span style="font-weight: bold;">Section: </span>{{ticket.ticketResponse.section}}</li>
+          <li><span style="font-weight: bold;">When: </span>{{ticket.ticketResponse.occursAt | revertTime}}</li>
+          <li><span style="font-weight: bold;">Quantity: </span>{{ticket.ticketResponse.quantity}}</li>
+          <li style="margin-top: 10px;" *ngIf="ticket.ifRefunded">
+            <div style="border: 1.5px solid black; border-radius: 15px; ">
+              <h5 style="font-weight: bold;">Not valid!</h5>
+            </div>
+          </li>
+
+        </ul>
+
+      </div>
+      <div style="margin-bottom: 20%; display: inline;" *ngIf="!ticket.ifRefunded">
+          <button type="button" style="margin-right: 3%;" class="btn btn-warning">Print ticket</button>
+          <button type="button" class="btn btn-info">Send email</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="orders" style="width: 100%; height: 300px;">
+  <h5 style="display: flex; justify-content: center;padding-top: 150px;">You do not have orders yet! &nbsp;<a
+      style="text-decoration: underline; color: blue; cursor: pointer;" (click)="buyTicket()"> Buy
+      some tickets</a></h5>
+</div>

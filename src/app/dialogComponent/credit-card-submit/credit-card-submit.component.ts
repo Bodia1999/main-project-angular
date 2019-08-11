@@ -7,7 +7,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./credit-card-submit.component.css']
 })
 export class CreditCardSubmitComponent implements OnInit {
-
+  error = false;
   ifVisible = false;
   constructor(private dialogRef: MatDialogRef<CreditCardSubmitComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
@@ -25,19 +25,24 @@ export class CreditCardSubmitComponent implements OnInit {
     this.ifVisible = false;
   }
   cancel() {
-    this.dialogRef.close({ data: sessionStorage.getItem('value') });
+    this.dialogRef.close({ data: sessionStorage.getItem('value'), ifBuy: false });
     sessionStorage.removeItem('value');
   }
 
-  submit() {
+  submit(qt) {
     console.log(sessionStorage.getItem('value'));
     if (sessionStorage.getItem('value') === null) {
       this.ifVisible = true;
       //alert('Please choose one card!');
       return;
     }
+    if (parseInt(sessionStorage.getItem('quantity')) < qt) {
+      this.error = true;
+      return;
+    }
+    this.error = false;
     this.ifVisible = false;
-    this.dialogRef.close({ data: sessionStorage.getItem('value') });
+    this.dialogRef.close({ data: sessionStorage.getItem('value'), ifBuy: true });
     sessionStorage.removeItem('value');
   }
 

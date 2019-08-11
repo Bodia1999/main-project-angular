@@ -12,7 +12,7 @@ import { PopupCardComponent } from '../dialogComponent/popup-card/popup-card.com
 export class CreditCardsComponent implements OnInit {
 
   urlToGetAllCards = 'http://localhost:8000/api/chargeController/getAllCardsByCustomer/';
-  cardData = [];
+  cardData;
 
   constructor(
     private dialog: MatDialog,

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { NameService } from './service/name.service';
 import { MatDialog } from '@angular/material';
 import { DialogContentExampleDialogComponent } from './dialogComponent/dialog-content-example-dialog/dialog-content-example-dialog.component';
+import { TicketService } from './service/ticketService';
 
 @Component({
   selector: 'app-root',
@@ -18,11 +19,13 @@ export class AppComponent {
     name: 'name',
     surname: 'surname'
   };
+  
   constructor(
     private cookies: CookieService,
     private data: DataService,
     private router: Router,
     private nameSurnameService: NameService,
+   
     private dialog: MatDialog
   ) {
   }
@@ -49,6 +52,7 @@ export class AppComponent {
     if (sessionStorage.getItem('nameSurname')) {
       this.nameSurname = JSON.parse(sessionStorage.getItem('nameSurname'));
     }
+   
     console.log(this.nameSurname);
 
   }
@@ -69,6 +73,7 @@ export class AppComponent {
     this.data.changeMessage(true);
     this.cookies.delete('token');
     sessionStorage.removeItem('token');
+    sessionStorage.clear();
     sessionStorage.setItem('ifVisible', 'true');
     this.router.navigate(['/']);
   }

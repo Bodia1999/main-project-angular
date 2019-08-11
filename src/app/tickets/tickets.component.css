@@ -1,4 +1,4 @@
-body {
+/*body {
   background: #eee;
 }
 
@@ -30,4 +30,15 @@ a {
 
 .fa {
   color: #4183D7;
+}*/
+
+
+.shadow-sm {
+  min-width: 225px;
+  max-width: 23%;
+}
+
+.card-deck {
+  display: flex;
+  justify-content: center;
 }
