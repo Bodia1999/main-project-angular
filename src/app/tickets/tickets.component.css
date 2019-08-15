@@ -42,3 +42,24 @@ a {
   display: flex;
   justify-content: center;
 }
+
+.float {
+  background-color: coral;
+  border-radius: 50%;
+  border: none;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  width: 3em;
+  height: 3em;
+}
+
+.inside {
+  outline: 0 !important;
+  text-decoration: none;
+  position: fixed;
+  bottom: 0.7rem;
+  right: 1.6rem;
+  color: white;
+  font-size: 45px;
+}

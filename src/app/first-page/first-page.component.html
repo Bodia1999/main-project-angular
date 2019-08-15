@@ -1,68 +1,25 @@
 
-<!--<div class="MainContainer">
-
-   <div class="ParallaxContainer">
-     <img src="https://wallpapersite.com/images/wallpapers/moraine-lake-3840x2160-snow-winter-4k-3373.jpg" alt="">
-   </div>
-
-  <div class="ContentContainer">
-    <div class="Content">
-      <p>ʻO Lorem Ipsum kahi haʻahaʻa wale nō o ka paʻi a me keʻano o nāʻoihana. ʻO Lorem Ipsum ka 'ōlelo papahana
-        maʻamau o kaʻoihana o ka makahiki 1500, i ka wā i lawe ai kekahi mea paʻi kiʻiʻole i keʻano o ka type a
-        scrambled iā ia e hana i kahi puke kiko'ī. ʻAʻole i ola wale i kaʻelima mau kenekulia, akā,ʻo ka leleʻana hoʻi i
-        nāʻano o ka lolouila, e hoʻololiʻoleʻia ana. Ua hoʻolahaʻia i nā makahiki 1960 me ka hoʻokuʻuʻana i nā pepa
-        Letraset i loko o nā moʻolelo Lorem Ipsum, a me nā mea hou aku me ka polokalamu hoʻopuka pākī e like me Aldus
-        PageMaker me nā papa o Lorem Ipsum.
-      </p>
-      <p>ʻO Lorem Ipsum kahi haʻahaʻa wale nō o ka paʻi a me keʻano o nāʻoihana. ʻO Lorem Ipsum ka 'ōlelo papahana
-        maʻamau o kaʻoihana o ka makahiki 1500, i ka wā i lawe ai kekahi mea paʻi kiʻiʻole i keʻano o ka type a
-        scrambled iā ia e hana i kahi puke kiko'ī. ʻAʻole i ola wale i kaʻelima mau kenekulia, akā,ʻo ka leleʻana hoʻi i
-        nāʻano o ka lolouila, e hoʻololiʻoleʻia ana. Ua hoʻolahaʻia i nā makahiki 1960 me ka hoʻokuʻuʻana i nā pepa
-        Letraset i loko o nā moʻolelo Lorem Ipsum, a me nā mea hou aku me ka polokalamu hoʻopuka pākī e like me Aldus
-        PageMaker me nā papa o Lorem Ipsum.
-      </p>
+<div class="btn-container">
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-xs-5">
+        <select class="custom-select" required [(ngModel)]="selectedValue">
+          <option selected="selected" disabled></option>
+          <option *ngFor="let category of categoriesArray" [ngValue]="category.id">{{category.name}}</option>
+        </select>
+      </div>
+      <div class="col-xs-4">
+        <div class="input-group">
+          <input type="text" class="form-control" required #valueOfInput placeholder="Search for...">
+          <span class="input-group-btn">
+            <button class="btn btn-search" (click)="search(selectedValue, valueOfInput.value)" type="button"><i
+                class="fa fa-search fa-fw"></i> Search</button>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="ContentContainer">
-    <div class="Content">
-      <p>ʻO Lorem Ipsum kahi haʻahaʻa wale nō o ka paʻi a me keʻano o nāʻoihana. ʻO Lorem Ipsum ka 'ōlelo papahana
-        maʻamau o kaʻoihana o ka makahiki 1500, i ka wā i lawe ai kekahi mea paʻi kiʻiʻole i keʻano o ka type a
-        scrambled iā ia e hana i kahi puke kiko'ī. ʻAʻole i ola wale i kaʻelima mau kenekulia, akā,ʻo ka leleʻana hoʻi i
-        nāʻano o ka lolouila, e hoʻololiʻoleʻia ana. Ua hoʻolahaʻia i nā makahiki 1960 me ka hoʻokuʻuʻana i nā pepa
-        Letraset i loko o nā moʻolelo Lorem Ipsum, a me nā mea hou aku me ka polokalamu hoʻopuka pākī e like me Aldus
-        PageMaker me nā papa o Lorem Ipsum.
-      </p>
-    </div>
-  </div>
-  <div class="ParallaxContainer">
-  </div>
-  <div class="ContentContainer">
-    <div class="Content">
-      <p>ʻO Lorem Ipsum kahi haʻahaʻa wale nō o ka paʻi a me keʻano o nāʻoihana. ʻO Lorem Ipsum ka 'ōlelo papahana
-        maʻamau o kaʻoihana o ka makahiki 1500, i ka wā i lawe ai kekahi mea paʻi kiʻiʻole i keʻano o ka type a
-        scrambled iā ia e hana i kahi puke kiko'ī. ʻAʻole i ola wale i kaʻelima mau kenekulia, akā,ʻo ka leleʻana hoʻi i
-        nāʻano o ka lolouila, e hoʻololiʻoleʻia ana. Ua hoʻolahaʻia i nā makahiki 1960 me ka hoʻokuʻuʻana i nā pepa
-        Letraset i loko o nā moʻolelo Lorem Ipsum, a me nā mea hou aku me ka polokalamu hoʻopuka pākī e like me Aldus
-        PageMaker me nā papa o Lorem Ipsum.
-      </p>
-    </div>
-  </div>
-  <div class="ParallaxContainer">
-  </div>
-</div>-->
-
-<!--<main class="wrapper">
-  <section class="section parallax bg1">
-    <h1>Such Adorableness</h1>
-  </section>
-  <section class="section static">
-    <h1>Boring</h1>
-  </section>
-  <section class="section parallax bg2">
-    <h1>SO FWUFFY AWWW</h1>
-  </section>
-</main>-->
-
+</div>
 <section class="section parallax parallax-1">
   <div class="container">
     <h1>Concerts</h1>
@@ -180,3 +137,5 @@
     </div>
   </div>
 </section>
+
+<button class="float" (click)="onFloatClick()"><span class="inside" style="">&#8679;</span></button>

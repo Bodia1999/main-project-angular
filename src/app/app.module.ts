@@ -32,11 +32,14 @@ import { RevertTimePipe } from './pipes/revert-time.pipe';
 import { CreateCreditCardComponent } from './dialogComponent/create-credit-card/create-credit-card.component';
 import { TicketsComponent } from './tickets/tickets.component';
 import { TicketService } from './service/ticketService';
+import { SearchEventComponent } from './search-event/search-event.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const appRoutes: Routes = [
   { path: '', component: FirstPageComponent },
   { path: 'tickets', component: TicketsComponent},
   { path: 'sign-in', component: SigningComponent },
+  { path: 'searchEvent', component: SearchEventComponent},
   { path: 'sign-up', component: SigningUpComponent },
   {
     path: 'profile',
@@ -79,11 +82,15 @@ const appRoutes: Routes = [
     RevertTimePipe,
     CreateCreditCardComponent,
     TicketsComponent,
+    SearchEventComponent,
+    
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {
+      scrollPositionRestoration: 'enabled'
+    }),
     HttpClientModule,
     ReactiveFormsModule,
     MatDialogModule,
@@ -92,6 +99,7 @@ const appRoutes: Routes = [
     MatTableModule,
     BrowserAnimationsModule,
     StripeModule.forRoot(),
+    NgxPaginationModule,
   ],
   providers: [CookieService, DataService, NameService, CreditService, LetterToUppercasePipe, TicketService],
   bootstrap: [AppComponent],

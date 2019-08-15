@@ -1,0 +1,45 @@
+<div class="container1">
+    <div class="img">
+    <div class="container">
+    <div class="card-deck mb-3 text-center">
+      <div *ngFor="let event of mainArray | paginate :{ itemsPerPage: 24, currentPage: p}" class="card mb-4 shadow-sm">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">{{event.state | letterToUpperCase}}</h4>
+        </div>
+        <div class="card-body">
+          <p class="text-center" style="font-size: 22px;">{{event.name}}</p>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li><span style="font-weight: bold;">State: </span>{{event.venue.location}}</li>
+            <li><span style="font-weight: bold;">Where: </span>{{event.venue.name}}</li>
+            <li><span style="font-weight: bold;">When: </span>{{event.occursAtLocal | revertTime}}</li>
+            <li><span style="font-weight: bold;">Tickets left: </span>{{event.productsEticketCount}}</li>
+          </ul>
+          <button (click)="click(event.id)" value="{{event.id}}" type="button"
+            class="btn btn-lg btn-block btn-primary">Get more info</button>
+        </div>
+      </div>
+
+
+    </div>
+
+    </div>
+
+    <div *ngIf="ifVisible" style="width: 100%; height: 300px;">
+      <h2 style="display: flex; justify-content: center;padding-top: 150px; color: white;">There wasn`t found any mathches. &nbsp;<a
+          style="text-decoration: underline; color: white; cursor: pointer;" (click)="return()"> Try with another
+          data!</a></h2>
+    </div>
+    <div *ngIf="paginationVisibility" style="width: 100%; display: flex; justify-content: center; margin-bottom: 20px;">
+    <div class="pagiantion" >
+        <div>
+            <div style="margin-top: 12px; margin-right: 12px;">
+        <pagination-controls class="my-pagination" (pageChange)="p = $event" [maxSize]="5" >
+        </pagination-controls>
+    </div>    
+    </div>
+    </div>
+    </div>
+    <button class="float" (click)="onFloatClick()"><span class="inside" style="">&#8679;</span></button>
+    </div>
+
+</div>

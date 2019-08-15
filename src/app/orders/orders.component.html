@@ -5,14 +5,11 @@
       <th scope="col">Paid sum</th>
       <th scope="col">Quantity</th>
       <th scope="col">Type of event</th>
+      <th scope="col">Name</th>
       <th scope="col">Row</th>
       <th scope="col">Section</th>
       <th scope="col">OccursAt</th>
-      <th scope="col">Stripe charge ID</th>
-      <th scope="col">Ticket order ID</th>
-      <th scope="col">Refunded</th>
       <th scope="col">Created at</th>
-      <th scope="col">Updated at</th>
     </tr>
   </thead>
   <tbody>
@@ -21,14 +18,11 @@
       <td>${{data.amount}}</td>
       <td class="refund">{{data.ticketResponse.quantity}}</td>
       <td>{{data.ticketResponse.typeOfEvents | letterToUpperCase}}</td>
+      <td>{{data.ticketResponse.nameOfEvent}}</td>
       <td>{{data.ticketResponse.row}}</td>
       <td>{{data.ticketResponse.section}}</td>
       <td>{{data.ticketResponse.occursAt | revertTime}}</td>
-      <td>{{data.stripeChargeId}}</td>
-      <td>{{data.ticketEvolutionId}}</td>
-      <td class="refund">{{data.ifRefunded | revertValue}}</td>
       <td>{{data.createdAt | revertTime}}</td>
-      <td>{{data.updatedAt | revertTime}}</td>
     </tr>
   </tbody>
 </table>
@@ -42,11 +36,13 @@
       </div>
       <div class="card-body">
         <h1 class="card-title pricing-card-title">${{ticket.amount}} <small class="text-muted"></small></h1>
+        <h6>{{ticket.ticketResponse.nameOfEvent}}</h6>
         <ul class="list-unstyled mt-3 mb-4">
           <li><span style="font-weight: bold; ">Row: </span>{{ticket.ticketResponse.row}}</li>
           <li><span style="font-weight: bold;">Section: </span>{{ticket.ticketResponse.section}}</li>
           <li><span style="font-weight: bold;">When: </span>{{ticket.ticketResponse.occursAt | revertTime}}</li>
           <li><span style="font-weight: bold;">Quantity: </span>{{ticket.ticketResponse.quantity}}</li>
+          <li><span style="font-weight: bold;">Bought: </span>{{ticket.createdAt | revertTime}}</li>
           <li style="margin-top: 10px;" *ngIf="ticket.ifRefunded">
             <div style="border: 1.5px solid black; border-radius: 15px; ">
               <h5 style="font-weight: bold;">Not valid!</h5>

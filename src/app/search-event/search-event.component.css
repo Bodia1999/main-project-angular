@@ -1,0 +1,83 @@
+.container1 {
+     margin: 0;
+     padding: 0;
+     min-height: 100%;
+     min-width: 100%;
+}
+.img {
+    margin: 0;
+    padding: 0;
+    height:100%;
+    min-height:84vh;
+    background-image:url("https://images.wallpaperscraft.com/image/singer_performance_microphone_115459_3840x2160.jpg");
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.list-unstyled {
+  text-align: left;
+}
+
+
+
+.shadow-sm {
+  min-width: 225px;
+  max-width: 23%;
+}
+
+.card-deck {
+    padding-top: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.ngx-pagination {
+  padding-left: 0px !important;
+}
+
+.ngx-pagination .current,
+.btn-info {
+  background: #17a2b8 !important;
+  border: transparent !important;
+  border-radius: 20px !important;
+}
+
+.ngx-pagination .current:hover {
+  background: #15ceeb !important;
+  border-radius: 20px !important;
+  border: transparent !important;}
+
+
+  .pagiantion {
+      border-radius: 10px;
+      background: white;
+      max-width: 380px;
+      display: flex;
+      justify-content: center;
+  }
+ 
+
+  .float {
+    background-color: coral;
+    border-radius: 50%;
+    border: none;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    width: 3em;
+    height: 3em;
+  }
+
+  .inside {
+    outline: 0 !important;
+    text-decoration: none;
+    position: fixed;
+    bottom: 0.7rem;
+    right: 1.6rem;
+    color: white;
+    font-size: 45px;
+  }

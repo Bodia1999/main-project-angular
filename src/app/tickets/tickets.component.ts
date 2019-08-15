@@ -91,4 +91,11 @@ export class TicketsComponent implements OnInit {
     });
   }
 
+  onFloatClick() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
+
 }

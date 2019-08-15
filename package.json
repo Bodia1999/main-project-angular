@@ -25,9 +25,11 @@
     "@ng-bootstrap/ng-bootstrap": "^5.1.0",
     "angularjs-material-dialog": "^1.1.0",
     "cors": "^2.8.5",
+    "jquery": "^3.4.1",
     "ng-bootstrap-form-validation": "^4.0.0",
     "ng2-opd-popup": "^1.1.21",
     "ngx-cookie-service": "^2.2.0",
+    "ngx-pagination": "^4.1.0",
     "parallax-js": "^3.1.0",
     "rxjs": "~6.5.2",
     "stripe-angular": "^0.5.1",
@@ -35,7 +37,7 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.802.0",
+    "@angular-devkit/build-angular": "^0.802.2",
     "@angular/cli": "~8.2.0",
     "@angular/compiler-cli": "~9.0.0-next.0",
     "@angular/language-service": "~9.0.0-next.0",
