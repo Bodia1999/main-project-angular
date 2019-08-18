@@ -34,6 +34,7 @@ import { TicketsComponent } from './tickets/tickets.component';
 import { TicketService } from './service/ticketService';
 import { SearchEventComponent } from './search-event/search-event.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { SubstringPipe } from './pipes/substring.pipe';
 
 const appRoutes: Routes = [
   { path: '', component: FirstPageComponent },
@@ -83,6 +84,7 @@ const appRoutes: Routes = [
     CreateCreditCardComponent,
     TicketsComponent,
     SearchEventComponent,
+    SubstringPipe
     
   ],
   imports: [
