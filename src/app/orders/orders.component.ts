@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-  urlToGetAllOrdersByUserId = 'http://localhost:8000/api/order/getAllById/';
+  // urlToGetAllOrdersByUserId = 'http://localhost:8000/api/order/getAllById/';
+  urlToGetAllOrdersByUserId = 'https://tickets-app-server.herokuapp.com/api/order/getAllById/';
   responseData: any;
   ticketsArray: any;
   ifVisibleTickets = true;

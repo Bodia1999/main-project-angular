@@ -12,7 +12,8 @@ import { DataService } from '../service/data.service';
 })
 export class SigningComponent implements OnInit {
   postData = {};
-  url = 'http://localhost:8000/api/auth/signin';
+  // url = 'http://localhost:8000/api/auth/signin';
+  url = 'https://tickets-app-server.herokuapp.com/api/auth/signin';
   token = '';
   checker = true;
 

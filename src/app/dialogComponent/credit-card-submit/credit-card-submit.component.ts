@@ -42,7 +42,7 @@ export class CreditCardSubmitComponent implements OnInit {
     }
     this.error = false;
     this.ifVisible = false;
-    this.dialogRef.close({ data: sessionStorage.getItem('value'), ifBuy: true });
+    this.dialogRef.close({ data: sessionStorage.getItem('value'), ifBuy: true, quantity: qt });
     sessionStorage.removeItem('value');
   }
 

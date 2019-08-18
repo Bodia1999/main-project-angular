@@ -10,7 +10,8 @@ import { error } from '@angular/compiler/src/util';
 })
 export class PopupCardComponent implements OnInit {
   cardObject = {};
-  url = 'http://localhost:8000/api/chargeController/getOneCardByCustomer/';
+  // url = 'http://localhost:8000/api/chargeController/getOneCardByCustomer/';
+  url = 'https://tickets-app-server.herokuapp.com/api/chargeController/getOneCardByCustomer/';
   constructor(private dialogRef: MatDialogRef<PopupCardComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private http: HttpClient

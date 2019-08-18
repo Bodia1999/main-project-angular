@@ -10,8 +10,10 @@ import { error } from '@angular/compiler/src/util';
   styleUrls: ['./first-page.component.css']
 })
 export class FirstPageComponent implements OnInit {
-  url = 'http://localhost:8000/ticketEvolution/get';
-  urlCategories = 'http://localhost:8000/ticketEvolution/getCategories';
+ // url = 'http://localhost:8000/ticketEvolution/get';
+  url = 'https://tickets-app-server.herokuapp.com/ticketEvolution/get';
+ // urlCategories = 'http://localhost:8000/ticketEvolution/getCategories';
+  urlCategories = 'https://tickets-app-server.herokuapp.com/ticketEvolution/getCategories';
   mainArray = [];
   firstSection = [];
   secondSection = [];

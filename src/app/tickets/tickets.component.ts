@@ -12,8 +12,10 @@ import { error } from '@angular/compiler/src/util';
   styleUrls: ['./tickets.component.css']
 })
 export class TicketsComponent implements OnInit {
-  urlToGetInfoAboutEvent = 'http://localhost:8000/ticketEvolution/getEvent/';
-  urlToCharge = 'http://localhost:8000/api/chargeController/charge';
+  // urlToGetInfoAboutEvent = 'http://localhost:8000/ticketEvolution/getEvent/';
+  urlToGetInfoAboutEvent = 'https://tickets-app-server.herokuapp.com/ticketEvolution/getEvent/';
+  // urlToCharge = 'http://localhost:8000/api/chargeController/charge';
+  urlToCharge = 'https://tickets-app-server.herokuapp.com/api/chargeController/charge';
   ticketsArray = [];
   ticketObject = {};
   constructor(
@@ -84,7 +86,7 @@ export class TicketsComponent implements OnInit {
         return;
       }
       if (result.ifBuy) {
-        this.buy(id, result.data, ticketQuantity);
+        this.buy(id, result.data, result.quantity);
       }
       console.log(result.data);
       console.log(`Dialog result: ${result.data}`);

@@ -35,12 +35,18 @@ export class MainComponentComponent implements OnInit {
   oldPassword = '';
   newPassword = '';
   changePasswordButton = false;
-  urlGetUser = 'http://localhost:8000/api/users/me';
-  urlUpdateUser = 'http://localhost:8000/api/users/update';
-  urlSaveCardToUser = 'http://localhost:8000/creditCard/save';
-  urlSaveCardToStripe = 'http://localhost:8000/api/chargeController/addCard';
-  urlToDeleteCard = 'http://localhost:8000/creditCard/delete';
-  urlToChangePassword = 'http://localhost:8000/api/users/changePassword';
+  // urlGetUser = 'http://localhost:8000/api/users/me';
+  urlGetUser = 'https://tickets-app-server.herokuapp.com/api/users/me';
+  // urlUpdateUser = 'http://localhost:8000/api/users/update';
+  urlUpdateUser = 'https://tickets-app-server.herokuapp.com/api/users/update';
+  // urlSaveCardToUser = 'http://localhost:8000/creditCard/save';
+  urlSaveCardToUser = 'https://tickets-app-server.herokuapp.com/creditCard/save';
+  // urlSaveCardToStripe = 'http://localhost:8000/api/chargeController/addCard';
+  urlSaveCardToStripe = 'https://tickets-app-server.herokuapp.com/api/chargeController/addCard';
+  // urlToDeleteCard = 'http://localhost:8000/creditCard/delete';
+  urlToDeleteCard = 'https://tickets-app-server.herokuapp.com/creditCard/delete';
+  // urlToChangePassword = 'http://localhost:8000/api/users/changePassword';
+  urlToChangePassword = 'https://tickets-app-server.herokuapp.com/api/users/changePassword';
   private publishableKey = 'pk_test_aJLasjZs68TE0fDDJODrLwwt007plWc5hZ';
   constructor(
     private router: Router,

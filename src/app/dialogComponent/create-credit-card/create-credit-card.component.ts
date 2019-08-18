@@ -8,7 +8,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./create-credit-card.component.css']
 })
 export class CreateCreditCardComponent implements OnInit {
-  urlSaveCardToUser = 'http://localhost:8000/creditCard/save';
+  // urlSaveCardToUser = 'http://ocalhost:8000/creditCard/save';
+  urlSaveCardToUser = 'https://tickets-app-server.herokuapp.com/creditCard/save';
   constructor(private dialogRef: MatDialogRef<CreateCreditCardComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private http: HttpClient) { }

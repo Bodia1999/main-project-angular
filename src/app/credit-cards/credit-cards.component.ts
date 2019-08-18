@@ -11,7 +11,9 @@ import { PopupCardComponent } from '../dialogComponent/popup-card/popup-card.com
 })
 export class CreditCardsComponent implements OnInit {
 
-  urlToGetAllCards = 'http://localhost:8000/api/chargeController/getAllCardsByCustomer/';
+  //urlToGetAllCards = 'http://localhost:8000/api/chargeController/getAllCardsByCustomer/';
+  urlToGetAllCards = 'https://tickets-app-server.herokuapp.com/api/chargeController/getAllCardsByCustomer/';
+  
   cardData;
 
   constructor(

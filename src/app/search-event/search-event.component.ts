@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
 })
 export class SearchEventComponent implements OnInit {
 
-  url = 'http://localhost:8000/ticketEvolution/get';
+  // url = 'http://localhost:8000/ticketEvolution/get';
+  url = 'https://tickets-app-server.herokuapp.com/ticketEvolution/get';
   mainArray = [];
   ifVisible = false;
   paginationVisibility = true;

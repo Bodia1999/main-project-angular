@@ -13,10 +13,14 @@ export class SigningUpComponent implements OnInit {
   postData = {};
   email = '';
   token = '';
-  url = 'http://localhost:8000/api/auth/signup';
-  urlToUpdateCustomer = 'http://localhost:8000/api/users/update';
-  urlToCreateCustomerStripe = 'http://localhost:8000/api/chargeController/customers';
-  urlToLogin = 'http://localhost:8000/api/auth/signin';
+  // url = 'http://localhost:8000/api/auth/signup';
+  url = 'https://tickets-app-server.herokuapp.com/api/auth/signup';
+  // urlToUpdateCustomer = 'http://localhost:8000/api/users/update';
+  urlToUpdateCustomer = 'https://tickets-app-server.herokuapp.com/api/users/update';
+  // urlToCreateCustomerStripe = 'http://localhost:8000/api/chargeController/customers';
+  urlToCreateCustomerStripe = 'https://tickets-app-server.herokuapp.com/api/chargeController/customers';
+  // urlToLogin = 'http://localhost:8000/api/auth/signin';
+  urlToLogin = 'https://tickets-app-server.herokuapp.com/api/auth/signin';
   constructor(
     private http: HttpClient,
     private router: Router
